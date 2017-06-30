@@ -111,6 +111,9 @@ def addGeneNamesToDictionary(fileName, dictionary):
 def writeDictToFile(fileName, dictionary):
 	file = open(fileName, "w") #creates file if it doesn't exist
 	name = ""
+	file.write("Position,")
+	file.write("Locus Tag,")
+	file.write("Gene Name,\n")
 	for startPos in dictionary: #loops through positions
 		file.write(startPos)
 		file.write(",")
