@@ -94,7 +94,7 @@ def tagsToGeneNames(tagList, dictionary):
 			else:
 				geneList.append(tagList[i]) #otherwise add the locus tag
 		else:
-			geneList.append("TAG_NOT_FOUND") #if the locus tag wasn't in dict
+			geneList.append("LOCUS_NOT_FOUND") #if the locus tag wasn't in dict
 	return geneList
 
 #takes a list of locus tags and gene names, as well as an output file name
@@ -103,9 +103,10 @@ def writeToFile(tags, genes, fileName):
 	file = open(fileName, "w") #creates output file
 	for i in range(0,len(tags)):
 		file.write(tags[i]) #col 1 : locus tag
-		file.write(",")
-		file.write(genes[i]) #col 2 : gene name
-		file.write("\n")
+		if i != (len(tags)-1): #last tag is always blank
+			file.write(",")
+			file.write(genes[i]) #col 2 : gene name
+			file.write("\n")
 
 #takes a file contiaining locus tags, a dictionary of locusTags:geneNames and an output file
 #parses locus tags from file, makes a list of corresponding gene names and outputs as a csv
